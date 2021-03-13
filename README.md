@@ -1,4 +1,4 @@
-# library_system
+# Library-System
 
 A new Flutter application.
 
@@ -15,3 +15,9 @@ For help getting started with Flutter, view our
 [online documentation](https://flutter.dev/docs), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
 # Library-System
+2021 / 02 / 03  Flutter-Login-Firebase-Bloc
+
+Flutter-Login-Firebase-Bloc.
+
+[My Github](https://github.com/wayne900204),
+📫  Reach me  **wayne900204@gmail.com**
