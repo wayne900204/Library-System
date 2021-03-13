@@ -2,7 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:library_system/bloc/qr_code_bloc.dart';
+
+import 'bloc/qr_code_bloc.dart';
 
 //my own imports
 class QRCodeBar extends StatefulWidget {
@@ -36,6 +37,13 @@ class _QRCodeBarState extends State<QRCodeBar> {
   Widget build(BuildContext context) {
     size = MediaQuery.of(context).size;
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Rent / Return',style: TextStyle(color: Colors.white),),
+        centerTitle: true,
+        iconTheme: IconThemeData(
+          color: Colors.white,
+        ),
+      ),
       body: BlocConsumer<QrCodeBloc, QrCodeState>(
         listener: (context, state) {
           if (state is QrCodeInitial) {
@@ -76,13 +84,13 @@ class _QRCodeBarState extends State<QRCodeBar> {
         },
         builder: (context, state) {
           return Scaffold(
-            backgroundColor: Colors.amberAccent,
+            backgroundColor: Colors.black.withOpacity(.35),
             body: Container(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   buildName(),
-                  IconButton(icon: Icon(Icons.check,size: 30,), onPressed: () async{
+                  IconButton(icon: Icon(Icons.check,size: 50,color: Colors.red,), onPressed: () async{
                     return _scanBarCode(_userNameController.text);
                   })
                 ],

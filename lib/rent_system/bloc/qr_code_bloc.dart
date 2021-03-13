@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:library_system/repository/qr_code_repository.dart';
+import 'package:library_system/rent_system/repository/qr_code_repository.dart';
 import 'package:meta/meta.dart';
 import 'package:equatable/equatable.dart';
 
@@ -28,7 +28,7 @@ class QrCodeBloc extends Bloc<QrCodeEvent, QrCodeState> {
       print('activityType: ' + activityType.toString());
       if (activityType == 'Borrow Book Success~' ||
           activityType == 'Return Book Success~' ||
-          activityType == 'Someone have been borrow!') {
+          activityType == 'Someone have been borrow!'||activityType =='Cancel Success') {
         yield QrCodeIsSuccessful(activityType: activityType);
       } else {
         print("Fail Error");

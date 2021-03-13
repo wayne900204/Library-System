@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:library_system/QR_bar.dart';
+import 'package:library_system/rent_system/QR_bar.dart';
+import 'package:library_system/rent_user_info/renter_listview.dart';
 
 class MainPage extends StatelessWidget {
   @override
@@ -57,7 +58,8 @@ class MainPage extends StatelessWidget {
   /// 查看借閱狀況
   Widget _buildCreate(BuildContext context, Size size) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () =>Navigator.push(
+          context, MaterialPageRoute(builder: (context) => new RenterList())),
       child: Container(
         margin: EdgeInsets.only(top: size.height * 0.03),
         width: size.width * 0.7,

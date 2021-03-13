@@ -57,7 +57,10 @@ class QrCodeRepository {
 
   /// 如果 userName 是空的|| 上面目前沒有這本書的話
   Future<String> getActivityType(String bookId, String userName) async {
-    if (await isPublish(bookId)) {
+    if(bookId=="-1"){
+      return 'Cancel Success';
+    }
+    else if (await isPublish(bookId)) {
       print(isPublish(bookId));
       print("isPublish");
       String dataBaseUserName = await getUserNameData(bookId, userName);
