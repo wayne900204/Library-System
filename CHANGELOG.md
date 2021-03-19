@@ -14,5 +14,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Renter Info
 
+## [0.0.3] -2021-3-19
+### Added
+Book Info
 ### Changed
 - App Bar Theme

@@ -6,7 +6,7 @@ import 'package:library_system/rent_user_info/ItemModel.dart';
 class RenterDataRepository {
   Future<List<RenterModel>> getAllRenterData() async {
     QuerySnapshot qShot =
-        await FirebaseFirestore.instance.collection('Books Info').get();
+        await FirebaseFirestore.instance.collection('Renter Info').orderBy('time',descending: true).get();
 
     return qShot.docs
         .map((doc) => RenterModel(

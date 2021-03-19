@@ -6,6 +6,7 @@ import 'package:library_system/rent_system/repository/qr_code_repository.dart';
 import 'package:library_system/rent_user_info/bloc/renter_data_bloc.dart';
 
 
+import 'book_info/bloc/book_info_bloc.dart';
 import 'main_page.dart';
 
 void main() async {
@@ -23,7 +24,8 @@ class MyApp extends StatelessWidget {
         BlocProvider(
         create: (context) => QrCodeBloc(new QrCodeRepository()),
         ),
-        BlocProvider(create: (context)=> RenterDataBloc())
+        BlocProvider(create: (context)=> RenterDataBloc()),
+        BlocProvider(create: (context)=> BookInfoBloc())
       ],
         child: MaterialApp(
           theme: ThemeData(

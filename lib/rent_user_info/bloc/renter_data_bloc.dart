@@ -32,6 +32,7 @@ class RenterDataBloc extends Bloc<RenterDataEvent, RenterDataState> {
 
       List<RenterModel> generatedItems = await rentDataRepository.getAllRenterData();
 
+
       await Future<void>.delayed(Duration(seconds: 1));
 
       yield RenterStateLoaded(items: generatedItems);

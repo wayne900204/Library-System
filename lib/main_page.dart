@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:library_system/rent_system/QR_bar.dart';
-import 'package:library_system/rent_user_info/renter_listview.dart';
+import 'package:library_system/rent_system/QR_bar_page.dart';
+import 'package:library_system/rent_user_info/renter_listview_page.dart';
+
+import 'book_info/book_info_page.dart';
 
 class MainPage extends StatelessWidget {
   @override
@@ -13,6 +15,7 @@ class MainPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            _buildBookInfo(context,size),
             _buildJoin(context, size),
             _buildCreate(context, size),
           ],
@@ -20,12 +23,44 @@ class MainPage extends StatelessWidget {
       ),
     );
   }
-
+  /// 查看書籍資訊
+  Widget _buildBookInfo(BuildContext context, Size size) {
+    return GestureDetector(
+      onTap: () => Navigator.push(
+          context, MaterialPageRoute(builder: (context) => new BookInfo())),
+      child: Container(
+        width: size.width * 0.7,
+        // height: size.height*0.,
+        margin: EdgeInsets.only(top: size.height * 0.03),
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.all(Radius.circular(25.0)),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.1),
+              spreadRadius: 2,
+              blurRadius: 3,
+              offset: Offset(0, 2), // changes position of shadow
+            ),
+          ],
+        ),
+        child: Text(
+          'Book Info',
+          style: TextStyle(
+              fontSize: 30.0,
+              color: Colors.cyan[700],
+              fontWeight: FontWeight.bold),
+        ),
+        // child: ,
+      ),
+    );
+  }
   /// 借／還書
   Widget _buildJoin(BuildContext context, Size size) {
     return GestureDetector(
       onTap: () => Navigator.push(
-          context, MaterialPageRoute(builder: (context) => new QRCodeBar())),
+          context, MaterialPageRoute(builder: (context) => new QRCodeBarPage())),
       child: Container(
         width: size.width * 0.7,
         // height: size.height*0.,
@@ -59,7 +94,7 @@ class MainPage extends StatelessWidget {
   Widget _buildCreate(BuildContext context, Size size) {
     return GestureDetector(
       onTap: () =>Navigator.push(
-          context, MaterialPageRoute(builder: (context) => new RenterList())),
+          context, MaterialPageRoute(builder: (context) => new RenterListPage())),
       child: Container(
         margin: EdgeInsets.only(top: size.height * 0.03),
         width: size.width * 0.7,

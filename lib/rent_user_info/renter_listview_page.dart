@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:library_system/rent_user_info/bloc/renter_data_bloc.dart';
 
-class RenterList extends StatefulWidget {
+class RenterListPage extends StatefulWidget {
   @override
-  _RenterListState createState() => _RenterListState();
+  _RenterListPageState createState() => _RenterListPageState();
 }
 
-class _RenterListState extends State<RenterList> {
+class _RenterListPageState extends State<RenterListPage> {
   RenterDataBloc _rentDataBloc;
 
   @override

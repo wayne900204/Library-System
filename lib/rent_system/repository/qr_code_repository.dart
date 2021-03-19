@@ -13,11 +13,21 @@ class QrCodeRepository {
     //crate map data
     Map<String, Object> mapBody = HashMap();
     mapBody["bookId"] = bookId;
-    mapBody["time"] = time;
+    mapBody["time"] = now.toString();
     mapBody['userName'] = userName ?? "";
 
-    return await FirebaseFirestore.instance
+
+    Map<String, Object> BookInfo = HashMap();
+
+    BookInfo['status'] = userName ?? "";
+    await FirebaseFirestore.instance
         .collection("Books Info")
+        .doc('$bookId')
+        .update(BookInfo);
+
+
+    return await FirebaseFirestore.instance
+        .collection("Renter Info")
         .doc('$bookId')
         .set(mapBody)
         .then((data) {
@@ -33,7 +43,7 @@ class QrCodeRepository {
     bool boo;
     try {
       DocumentSnapshot ds = await FirebaseFirestore.instance
-          .collection("Books Info")
+          .collection("Renter Info")
           .doc('$bookId')
           .get();
       final data = ds.data()['userName'].toString();
@@ -47,7 +57,7 @@ class QrCodeRepository {
   /// get userName
   Future<String> getUserNameData(String bookId, String userName) async {
     DocumentSnapshot ds = await FirebaseFirestore.instance
-        .collection('Books Info')
+        .collection('Renter Info')
         .doc(bookId)
         .get();
     final data = ds.data()['userName'].toString();

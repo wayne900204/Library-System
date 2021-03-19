@@ -6,12 +6,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'bloc/qr_code_bloc.dart';
 
 //my own imports
-class QRCodeBar extends StatefulWidget {
+class QRCodeBarPage extends StatefulWidget {
   @override
-  _QRCodeBarState createState() => _QRCodeBarState();
+  _QRCodeBarPageState createState() => _QRCodeBarPageState();
 }
 
-class _QRCodeBarState extends State<QRCodeBar> {
+class _QRCodeBarPageState extends State<QRCodeBarPage> {
   Size size;
   String barcode = "";
   QrCodeBloc _qrCodeBloc;
