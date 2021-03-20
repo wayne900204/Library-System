@@ -11,6 +11,7 @@ class BookInfo extends StatefulWidget {
 }
 
 class _BookInfoState extends State<BookInfo> {
+  TextEditingController _searchController = TextEditingController();
   BookInfoBloc _bookInfoBloc;
 
   @override
@@ -85,5 +86,54 @@ class _BookInfoState extends State<BookInfo> {
         );
       },
     );
+  }
+  // searchField
+  Widget _searchField(){
+    return           TextFormField(
+      style: TextStyle(fontSize: 14.0, color: Colors.black),
+      controller: _searchController,
+      onChanged: (changed) {
+        // _bookInfoBloc.isSearchUser.add(changed);
+      },
+      decoration: InputDecoration(
+        floatingLabelBehavior: FloatingLabelBehavior.never,
+        filled: true,
+        fillColor: Colors.grey[100],
+        suffixIcon: _searchController.text.length > 0 ? IconButton(
+            icon: Icon(Icons.search_outlined, color: Colors.grey[500], size: 16.0,),
+            onPressed: () {}): Icon(Icons.search_outlined, color: Colors.grey[500], size: 16.0,),
+        enabledBorder: OutlineInputBorder(
+            borderSide:  BorderSide(color: Colors.grey[100].withOpacity(0.3)),
+            borderRadius: BorderRadius.circular(30.0)),
+        focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.grey[100].withOpacity(0.3)),
+            borderRadius: BorderRadius.circular(30.0)),
+        contentPadding: EdgeInsets.only(
+            left: 15.0, right: 10.0),
+        labelText: "Search...",
+        hintStyle: TextStyle(
+            fontSize: 14.0,
+            color: Colors.grey,
+            fontWeight: FontWeight.w500),
+        labelStyle: TextStyle(
+            fontSize: 14.0,
+            color: Colors.grey,
+            fontWeight: FontWeight.w500),
+      ),
+      autocorrect: false,
+      autovalidateMode: AutovalidateMode.always,
+    );
+  }
+  // appbar Actions
+  List<Widget> _buildActions() {
+    return <Widget>[
+      IconButton(
+          icon: const Icon(
+            Icons.group_add,
+            color: Colors.white,
+          ),
+          // onPressed: (){_openAddUserDialog(false);}
+      ),
+    ];
   }
 }

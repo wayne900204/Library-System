@@ -9,12 +9,12 @@ class BookInfoRepository{
 
     return qShot.docs
         .map((doc) => BookInfoModel(
-      ISBN:  doc.data()['ISBN'],
-      bookAuthor:  doc.data()['book author'],
-      bookName:  doc.data()['book name'],
-      bookNumber:  doc.data()['book number'],
+      ISBN:  doc.data()['isbn'].toString(),
+      bookAuthor:  doc.data()['book_author'],
+      bookName:  doc.data()['book_name'],
+      bookNumber:  doc.data()['book_number'],
       group:  doc.data()['group'],
-        imageUrl: doc.data()['image url'],
+        imageUrl: doc.data()['image_url'],
       status:  doc.data()['status'])).toList();
 
   }
