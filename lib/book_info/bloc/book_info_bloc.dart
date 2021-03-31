@@ -21,12 +21,41 @@ class BookInfoBloc extends Bloc<BookInfoEvent, BookInfoState> {
     if (event is BookInfoLoadItemEvent) {
       yield BookInfoStateLoading();
 
-      List<BookInfoModel> generatedItems = await bookInfoRepository.getBookInfo();
-      print('abcccc');
-      print(generatedItems.length);
+      List<BookInfoModel> generatedItems =
+          await bookInfoRepository.getBookInfo();
       await Future<void>.delayed(Duration(seconds: 1));
 
       yield BookInfoStateLoaded(items: generatedItems);
+    }
+    if (event is BookInfoSearchUser) {
+      yield BookInfoStateLoading();
+
+      List<BookInfoModel> generatedItems =
+          await bookInfoRepository.getBookInfo();
+
+      var dummyListData = List<BookInfoModel>();
+      String text = event.text;
+      generatedItems.forEach((stud) {
+        var st2 = BookInfoModel(
+            imageUrl: stud.imageUrl,
+            status: stud.status,
+            bookAuthor: stud.bookAuthor,
+            bookName: stud.bookName,
+            bookNumber: stud.bookNumber,
+            ISBN: stud.ISBN,
+            group: stud.group);
+        if ((st2.imageUrl.toLowerCase()).contains(text.toLowerCase()) ||
+            st2.status.toLowerCase().contains(text.toLowerCase()) ||
+            st2.bookAuthor.toLowerCase().contains(text.toLowerCase()) ||
+            st2.bookName.toLowerCase().contains(text.toLowerCase()) ||
+            st2.bookNumber.toLowerCase().contains(text.toLowerCase()) ||
+            st2.ISBN.toLowerCase().contains(text.toLowerCase()) ||
+            st2.group.toLowerCase().contains(text.toLowerCase())) {
+          dummyListData.add(stud);
+        }
+      });
+
+      yield BookInfoStateLoaded(items: dummyListData);
     }
   }
 }

@@ -19,3 +19,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Book Info
 ### Changed
 - App Bar Theme
+
+## [0.0.4] -2021-3-19
+### Changed
+- Book Info Repository Firebase Data
+- qr_code_bloc renamed to borrow_bloc
+### Removed
+- QR Code
+ 

@@ -1,18 +1,28 @@
-import 'dart:collection';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:intl/intl.dart';
-import 'package:library_system/rent_user_info/ItemModel.dart';
+import 'package:library_system/book_info/model/book_info_model.dart';
 
 class RenterDataRepository {
-  Future<List<RenterModel>> getAllRenterData() async {
-    QuerySnapshot qShot =
-        await FirebaseFirestore.instance.collection('Renter Info').orderBy('time',descending: true).get();
+  /// get All Renter Data
+  Future<List<BookInfoModel>> getAllRenterData() async {
+    QuerySnapshot qShot = await FirebaseFirestore.instance
+        .collection('Books Info')
+        .orderBy('date', descending: true)
+        .get();
 
-    return qShot.docs
-        .map((doc) => RenterModel(
-            bookId: doc.data()['bookId'],
-            time: doc.data()['time'],
-            userName: doc.data()['userName']))
-        .toList();
+    List<BookInfoModel> list=  qShot.docs.map((doc) {
+      if(doc.data()['status']!=""&&doc.data()['status']!=null){
+        return BookInfoModel(
+            ISBN: doc.data()['isbn'].toString(),
+            bookAuthor: doc.data()['book_author'],
+            bookName: doc.data()['book_name'],
+            bookNumber: doc.data()['book_number'],
+            group: doc.data()['group'],
+            imageUrl: doc.data()['image_url'],
+            date: doc.data()['date'].toString(),
+            status: doc.data()['status']);
+      }
+    }).toList();
+     list.removeWhere((element) => element==null);
+     return list;
   }
 }

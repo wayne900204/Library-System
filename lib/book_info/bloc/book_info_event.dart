@@ -7,3 +7,10 @@ abstract class BookInfoEvent extends Equatable {
 }
 
 class BookInfoLoadItemEvent extends BookInfoEvent {}
+
+class BookInfoSearchUser extends BookInfoEvent {
+  final String text;
+  final List<BookInfoModel> items;
+
+  BookInfoSearchUser(this.text, this.items);
+}

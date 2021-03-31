@@ -1,10 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:library_system/rent_system/bloc/qr_code_bloc.dart';
-import 'package:library_system/rent_system/repository/qr_code_repository.dart';
+import 'package:library_system/book_info/bloc/borrow_bloc.dart';
+import 'package:library_system/book_info/repository/borrow_repository.dart';
 import 'package:library_system/rent_user_info/bloc/renter_data_bloc.dart';
-
 
 import 'book_info/bloc/book_info_bloc.dart';
 import 'main_page.dart';
@@ -22,22 +21,22 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-        create: (context) => QrCodeBloc(new QrCodeRepository()),
+          create: (context) => BorrowBloc(new QrCodeRepository()),
         ),
-        BlocProvider(create: (context)=> RenterDataBloc()),
-        BlocProvider(create: (context)=> BookInfoBloc())
+        BlocProvider(create: (context) => RenterDataBloc()),
+        BlocProvider(create: (context) => BookInfoBloc())
       ],
-        child: MaterialApp(
-          theme: ThemeData(
-            primarySwatch: Colors.cyan,
-            visualDensity: VisualDensity.adaptivePlatformDensity,
-          ),
-          debugShowCheckedModeBanner: false,
-          routes: <String, WidgetBuilder>{
-            "/": (context) => MainPage(),
-            "/mainPage": (context) => MainPage()
-          },
+      child: MaterialApp(
+        theme: ThemeData(
+          primarySwatch: Colors.cyan,
+          visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
+        debugShowCheckedModeBanner: false,
+        routes: <String, WidgetBuilder>{
+          "/": (context) => MainPage(),
+          "/mainPage": (context) => MainPage()
+        },
+      ),
     );
   }
 }

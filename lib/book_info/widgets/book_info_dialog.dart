@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:library_system/rent_system/bloc/qr_code_bloc.dart';
+import 'package:library_system/book_info/model/book_info_model.dart';
+import 'package:library_system/book_info/bloc/borrow_bloc.dart';
+
 class BookInfoDialog extends StatefulWidget {
   // ignore: non_constant_identifier_names
-  final String ISBN;
+
+  final BookInfoModel bookInfoModel;
+
   // ignore: non_constant_identifier_names
-  BookInfoDialog({this.ISBN});
+  BookInfoDialog({this.bookInfoModel});
 
   @override
   _BookInfoDialogState createState() => _BookInfoDialogState();
@@ -14,11 +19,12 @@ class BookInfoDialog extends StatefulWidget {
 class _BookInfoDialogState extends State<BookInfoDialog> {
   final TextEditingController _userNameController = TextEditingController();
 
-  QrCodeBloc _qrCodeBloc;
+  BorrowBloc _qrCodeBloc;
+
   @override
   void initState() {
     super.initState();
-    _qrCodeBloc = BlocProvider.of<QrCodeBloc>(context);
+    _qrCodeBloc = BlocProvider.of<BorrowBloc>(context);
   }
 
   @override
@@ -33,22 +39,24 @@ class _BookInfoDialogState extends State<BookInfoDialog> {
             getTextField("Last name", _userNameController),
             GestureDetector(
               onTap: () {
-                    _qrCodeBloc.add(QrCodeOnClick(bookId: widget.ISBN,userName: _userNameController.text));
-                    Navigator.pop(context);
+                _qrCodeBloc.add(BorrowOnClick(
+                    bookNumber: widget.bookInfoModel.bookNumber,
+                    userName: _userNameController.text,
+                    status: widget.bookInfoModel.status));
+                Navigator.pop(context);
               },
               child: Container(
                   margin: EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 0.0),
-                  child: getAppBorderButton('Add')
-              ),
+                  child: getAppBorderButton('Add')),
             ),
           ],
         ),
       ),
     );
   }
-
-  Widget getTextField(String inputBoxName,
-      TextEditingController inputBoxController) {
+  /// TextField
+  Widget getTextField(
+      String inputBoxName, TextEditingController inputBoxController) {
     return Padding(
       padding: const EdgeInsets.all(5.0),
       child: TextFormField(
@@ -59,7 +67,7 @@ class _BookInfoDialogState extends State<BookInfoDialog> {
       ),
     );
   }
-
+  /// AppBar
   Widget getAppBorderButton(String buttonLabel) {
     return Container(
       padding: EdgeInsets.all(8.0),

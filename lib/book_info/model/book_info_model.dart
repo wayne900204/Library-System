@@ -1,8 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'dart:async';
-import 'package:firebase_auth/firebase_auth.dart';
 
-class BookInfoModel{
+class BookInfoModel {
   // ignore: non_constant_identifier_names
   String ISBN;
   String bookAuthor;
@@ -11,8 +9,17 @@ class BookInfoModel{
   String group;
   String status;
   String imageUrl;
-  BookInfoModel({this.ISBN,this.bookAuthor,this.bookName,this.bookNumber,this.group,this.status,this.imageUrl});
+  String date;
 
+  BookInfoModel(
+      {this.ISBN,
+      this.bookAuthor,
+      this.bookName,
+      this.bookNumber,
+      this.group,
+      this.status,
+      this.imageUrl,
+      this.date});
 
   BookInfoModel.fromJson(DocumentSnapshot json)
       : ISBN = json.get("ISBN"),
@@ -20,6 +27,6 @@ class BookInfoModel{
         bookName = json.get("bookName"),
         bookNumber = json.get("bookNumber"),
         group = json.get("group"),
+        date = json.get('date'),
         status = json.get("status");
-
 }

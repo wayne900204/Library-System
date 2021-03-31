@@ -55,11 +55,8 @@ class _RenterListPageState extends State<RenterListPage> {
     return BlocBuilder<RenterDataBloc, RenterDataState>(
       buildWhen: (previous, current) => current is RenterStateLoaded,
       builder: (context, state) {
-        print(state);
-        print("state");
         if (state is RenterStateLoaded) {
           final items = state.items;
-          print(items.length);
           return ListView.separated(
             physics: AlwaysScrollableScrollPhysics(),
             itemBuilder: (context, index) {
@@ -67,14 +64,14 @@ class _RenterListPageState extends State<RenterListPage> {
 
               return ListTile(
                 title: Text(
-                  "Book Id: \n" + item.bookId,
+                  "Book Id: \n" + item.bookNumber,
                   style: theme.textTheme.headline6.copyWith(
                     color: Colors.black87,
                   ),
                 ),
-                subtitle: Text("Time: " + item.time),
+                subtitle: Text("Time: " + item.date),
                 trailing: Text(
-                  "userName:\n" + item.userName,
+                  "userName:\n" + item.status,
                   style: theme.textTheme.subtitle1.copyWith(
                     fontWeight: FontWeight.w600,
                     color: Colors.green,
