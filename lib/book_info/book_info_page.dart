@@ -6,6 +6,7 @@ import 'package:library_system/book_info/model/book_info_model.dart';
 import 'package:library_system/book_info/widgets/book_info_listView_item.dart';
 import 'package:library_system/book_info/bloc/borrow_bloc.dart';
 import 'package:library_system/book_info/widgets/book_info_dialog.dart';
+import 'package:library_system/book_info/widgets/dropDownButton.dart';
 import '../main_page.dart';
 
 class BookInfo extends StatefulWidget {
@@ -127,6 +128,7 @@ class _BookInfoState extends State<BookInfo> {
           final items = state.items;
           return Column(
             children: [
+              DropDownButton(bookInfoItems: items,bookInfoBloc: _bookInfoBloc),
               _searchField(items),
               Expanded(
                 child: ListView.separated(
@@ -196,15 +198,5 @@ class _BookInfoState extends State<BookInfo> {
         autovalidateMode: AutovalidateMode.always,
       ),
     );
-  }
-
-  Future _openDialog(BuildContext context) async {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return BookInfoDialog();
-      },
-    );
-
   }
 }

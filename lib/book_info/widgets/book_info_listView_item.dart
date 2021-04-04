@@ -4,6 +4,7 @@ import 'package:library_system/book_info/model/book_info_model.dart';
 import 'book_info_detail.dart';
 class BookInfoItem extends StatelessWidget {
 
+
   final BookInfoModel bookInfoModel;
   BookInfoItem({this.bookInfoModel});
   @override
