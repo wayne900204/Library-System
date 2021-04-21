@@ -41,8 +41,8 @@ class _RenterListPageState extends State<RenterListPage> {
         onRefresh: () {
           // ignore: close_sinks
           final itemsBloc = _rentDataBloc..add(RentDataRefreshEvent());
+          return itemsBloc.stream.firstWhere((e) => e is! RentDataRefreshEvent);
 
-          return itemsBloc.firstWhere((e) => e is! RentDataRefreshEvent);
         },
         child: _buildItemsList(),
       ),

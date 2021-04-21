@@ -27,6 +27,10 @@ Book Info
 ### Removed
 - QR Code
  
- ## [0.0.5] -2021-04-04
- ### Add
- - DropdownButton in book info 
+## [0.0.5] -2021-04-04
+### Added
+- DropdownButton in book info 
+
+## [0.0.6] -2021-04-21
+### Added
+- updated plugins and packages that support for flutter version to 2.0.5

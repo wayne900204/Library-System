@@ -68,7 +68,7 @@ class _BookInfoState extends State<BookInfo> {
             // ignore: close_sinks
             final itemsBloc = _bookInfoBloc..add(BookInfoLoadItemEvent());
 
-            return itemsBloc.firstWhere((e) => e is! BookInfoLoadItemEvent);
+            return itemsBloc.stream.firstWhere((e) => e is! BookInfoLoadItemEvent);
           },
           // child: _buildItemsList(),
           child: BlocConsumer<BorrowBloc, BorrowState>(
